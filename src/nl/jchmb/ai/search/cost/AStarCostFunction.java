@@ -13,7 +13,7 @@ public class AStarCostFunction<T> implements CostFunction<T> {
 	}
 	
 	@Override
-	public int getCost(Node<T> object) {
+	public float getCost(Node<T> object) {
 		return heuristic.estimate(object.getState()) + costFunction.getCost(object);
 	}
 

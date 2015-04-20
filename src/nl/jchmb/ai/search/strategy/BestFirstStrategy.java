@@ -8,12 +8,11 @@ import java.util.PriorityQueue;
 import nl.jchmb.ai.search.evaluator.StateEvaluator;
 import nl.jchmb.ai.search.expander.StateExpander;
 import nl.jchmb.ai.search.node.Node;
-import nl.jchmb.ai.search.node.NodeComparator;
 
 public class BestFirstStrategy<T> implements Strategy<T> {
-	private Comparator<T> comparator;
+	private Comparator<Node<T>> comparator;
 	
-	public BestFirstStrategy(Comparator<T> comparator) {
+	public BestFirstStrategy(Comparator<Node<T>> comparator) {
 		this.comparator = comparator;
 	}
 	
@@ -22,7 +21,7 @@ public class BestFirstStrategy<T> implements Strategy<T> {
 			StateEvaluator<T> evaluator, T startState) {
 		Node<T> currentNode;
 		T currentState;
-		PriorityQueue<Node<T>> queue = new PriorityQueue<Node<T>>(5000, new NodeComparator<T>(comparator));
+		PriorityQueue<Node<T>> queue = new PriorityQueue<Node<T>>(5000, comparator);
 		
 		queue.offer(new Node<T>(startState, new ArrayList<T>()));
 		while (!queue.isEmpty()) {

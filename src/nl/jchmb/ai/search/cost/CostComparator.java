@@ -17,8 +17,7 @@ public class CostComparator<T> implements Comparator<Node<T>> {
 
 	@Override
 	public int compare(Node<T> o1, Node<T> o2) {
-		int diff = costFunction.getCost(o1) - costFunction.getCost(o2);
-		
+		float diff = costFunction.getCost(o1) - costFunction.getCost(o2);
 		return diff == 0 ? 0 : (diff > 0 ? 1 : -1);
 	}
 }

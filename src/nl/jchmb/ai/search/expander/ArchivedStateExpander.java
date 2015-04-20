@@ -53,7 +53,7 @@ public class ArchivedStateExpander<T> implements StateExpander<T> {
 				if (buffer == null) {
 					while (iterator.hasNext()) {
 						current = iterator.next();
-						if (!archive.contains(buffer)) {
+						if (!archive.contains(current)) {
 							buffer = current;
 							archive.add(current);
 							break;
