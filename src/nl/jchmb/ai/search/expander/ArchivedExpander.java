@@ -9,11 +9,11 @@ import java.util.Set;
  * Uses an underlying StateExpander's iterator and skips states
  * that have already been visited before.
  */
-public class ArchivedStateExpander<T> implements StateExpander<T> {
-	private StateExpander<T> expander;
+public class ArchivedExpander<T> implements Expander<T> {
+	private Expander<T> expander;
 	private Set<T> archive;
 	
-	public ArchivedStateExpander(StateExpander<T> expander) {
+	public ArchivedExpander(Expander<T> expander) {
 		this.expander = expander;
 		archive = new HashSet<T>();
 	}

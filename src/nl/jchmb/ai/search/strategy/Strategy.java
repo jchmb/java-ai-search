@@ -2,8 +2,8 @@ package nl.jchmb.ai.search.strategy;
 
 import java.util.List;
 
-import nl.jchmb.ai.search.evaluator.StateEvaluator;
-import nl.jchmb.ai.search.expander.StateExpander;
+import nl.jchmb.ai.search.evaluator.Evaluator;
+import nl.jchmb.ai.search.expander.Expander;
 
 public interface Strategy<T> {
 	/**
@@ -13,8 +13,8 @@ public interface Strategy<T> {
 	 * @return
 	 */
 	public List<T> search(
-			StateExpander<T> expander,
-			StateEvaluator<T> evaluator,
+			Expander<T> expander,
+			Evaluator<T> evaluator,
 			T startState
 	);
 }

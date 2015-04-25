@@ -1,6 +1,6 @@
 package nl.jchmb.ai.search.evaluator;
 
-public interface StateEvaluator<T> {
+public interface Evaluator<T> {
 	/**
 	 * Check whether the given generic state is in the goal state.
 	 * 

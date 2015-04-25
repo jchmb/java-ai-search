@@ -2,8 +2,8 @@ package nl.jchmb.ai.search;
 
 import java.util.List;
 
-import nl.jchmb.ai.search.evaluator.StateEvaluator;
-import nl.jchmb.ai.search.expander.StateExpander;
+import nl.jchmb.ai.search.evaluator.Evaluator;
+import nl.jchmb.ai.search.expander.Expander;
 import nl.jchmb.ai.search.strategy.Strategy;
 
 /**
@@ -21,11 +21,11 @@ import nl.jchmb.ai.search.strategy.Strategy;
  *    path from a given start state to a goal state.
  */
 public class Searcher<T> {
-	private StateExpander<T> expander;
-	private StateEvaluator<T> evaluator;
+	private Expander<T> expander;
+	private Evaluator<T> evaluator;
 	private Strategy<T> strategy;
 	
-	public Searcher(StateExpander<T> expander, StateEvaluator<T> evaluator, Strategy<T> strategy) {
+	public Searcher(Expander<T> expander, Evaluator<T> evaluator, Strategy<T> strategy) {
 		this.expander = expander;
 		this.evaluator = evaluator;
 		this.strategy = strategy;

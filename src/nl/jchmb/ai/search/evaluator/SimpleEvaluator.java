@@ -5,10 +5,10 @@ package nl.jchmb.ai.search.evaluator;
  * equals the predefined goal state. This may require overriding 
  * the Object.equals method for the state class.
  */
-public class SimpleStateEvaluator<T> implements StateEvaluator<T> {
+public class SimpleEvaluator<T> implements Evaluator<T> {
 	private T goalState;
 	
-	public SimpleStateEvaluator(T goalState) {
+	public SimpleEvaluator(T goalState) {
 		this.goalState = goalState;
 	}
 	

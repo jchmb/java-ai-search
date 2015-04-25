@@ -3,8 +3,8 @@ package nl.jchmb.ai.search.strategy;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.jchmb.ai.search.evaluator.StateEvaluator;
-import nl.jchmb.ai.search.expander.StateExpander;
+import nl.jchmb.ai.search.evaluator.Evaluator;
+import nl.jchmb.ai.search.expander.Expander;
 
 public class DepthFirstStrategy<T> implements Strategy<T> {
 	private int depthLimit;
@@ -18,13 +18,13 @@ public class DepthFirstStrategy<T> implements Strategy<T> {
 	}
 	
 	@Override
-	public List<T> search(StateExpander<T> expander,
-			StateEvaluator<T> evaluator, T startState) {
+	public List<T> search(Expander<T> expander,
+			Evaluator<T> evaluator, T startState) {
 		return search(expander, evaluator, startState, new ArrayList<T>());
 	}
 	
-	private List<T> search(StateExpander<T> expander,
-			StateEvaluator<T> evaluator, T state, List<T> currentPath) {
+	private List<T> search(Expander<T> expander,
+			Evaluator<T> evaluator, T state, List<T> currentPath) {
 		List<T> path;
 		
 		currentPath.add(state);

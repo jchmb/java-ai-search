@@ -2,13 +2,13 @@ package nl.jchmb.ai.search.strategy;
 
 import java.util.List;
 
-import nl.jchmb.ai.search.evaluator.StateEvaluator;
-import nl.jchmb.ai.search.expander.StateExpander;
+import nl.jchmb.ai.search.evaluator.Evaluator;
+import nl.jchmb.ai.search.expander.Expander;
 
 public class IterativeDeepeningStrategy<T> implements Strategy<T> {
 	@Override
-	public List<T> search(StateExpander<T> expander,
-			StateEvaluator<T> evaluator, T startState) {
+	public List<T> search(Expander<T> expander,
+			Evaluator<T> evaluator, T startState) {
 		int depthLimit = 0;
 		List<T> path;
 		

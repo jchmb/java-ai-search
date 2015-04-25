@@ -5,14 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import nl.jchmb.ai.search.evaluator.StateEvaluator;
-import nl.jchmb.ai.search.expander.StateExpander;
+import nl.jchmb.ai.search.evaluator.Evaluator;
+import nl.jchmb.ai.search.expander.Expander;
 import nl.jchmb.ai.search.node.Node;
 
 public class BreadthFirstStrategy<T> implements Strategy<T> {
 	@Override
-	public List<T> search(StateExpander<T> expander,
-			StateEvaluator<T> evaluator, T startState) {
+	public List<T> search(Expander<T> expander,
+			Evaluator<T> evaluator, T startState) {
 		Node<T> currentNode;
 		T currentState;
 		Queue<Node<T>> queue = new LinkedList<Node<T>>();

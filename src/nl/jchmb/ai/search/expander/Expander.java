@@ -1,6 +1,6 @@
 package nl.jchmb.ai.search.expander;
 
-public interface StateExpander<T> {
+public interface Expander<T> {
 	/**
 	 * Expand a state and return its child states.
 	 * 
