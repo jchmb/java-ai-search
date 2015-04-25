@@ -1,4 +1,4 @@
-package nl.jchmb.ai.game;
+package nl.jchmb.ai.search.game;
 
 import java.util.ArrayList;
 import java.util.List;

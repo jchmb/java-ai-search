@@ -1,4 +1,4 @@
-package nl.jchmb.ai.game.examples.ttt;
+package nl.jchmb.ai.search.game.examples.ttt;
 
 import java.util.ArrayList;
 import java.util.Collection;

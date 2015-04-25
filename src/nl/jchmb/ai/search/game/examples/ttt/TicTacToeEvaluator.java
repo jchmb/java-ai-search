@@ -1,7 +1,7 @@
-package nl.jchmb.ai.game.examples.ttt;
+package nl.jchmb.ai.search.game.examples.ttt;
 
-import nl.jchmb.ai.game.Evaluation;
-import nl.jchmb.ai.game.GameEvaluator;
+import nl.jchmb.ai.search.game.Evaluation;
+import nl.jchmb.ai.search.game.GameEvaluator;
 
 public class TicTacToeEvaluator implements GameEvaluator<TicTacToe> {
 

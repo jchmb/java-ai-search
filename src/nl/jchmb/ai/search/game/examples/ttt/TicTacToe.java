@@ -1,10 +1,10 @@
-package nl.jchmb.ai.game.examples.ttt;
+package nl.jchmb.ai.search.game.examples.ttt;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import nl.jchmb.ai.game.Chooser;
-import nl.jchmb.ai.game.Negamax;
+import nl.jchmb.ai.search.game.Chooser;
+import nl.jchmb.ai.search.game.Negamax;
 
 public class TicTacToe {
 	private int[] board;
