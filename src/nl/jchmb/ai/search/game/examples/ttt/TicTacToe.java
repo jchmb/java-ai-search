@@ -105,9 +105,9 @@ public class TicTacToe {
 	
 	public static void main(String[] args) {
 		TicTacToe t = new TicTacToe();
-		Chooser<TicTacToe> chooser = new Negamax<TicTacToe>();
+		Chooser<TicTacToe> chooser = new Negamax<TicTacToe>(10);
 		for (int i = 0; i < 9; i++) {
-			t = chooser.choose(new TicTacToeEvaluator(), new TicTacToeExpander(), t, 10, t.getTurn());
+			t = chooser.choose(new TicTacToeEvaluator(), new TicTacToeExpander(), t, t.getTurn());
 			System.out.println(t + "\n");
 		}
 	}
