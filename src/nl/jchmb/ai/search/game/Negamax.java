@@ -35,7 +35,7 @@ public class Negamax<T> implements Chooser<T> {
 					new ArrayList<T>(states),
 					depth - 1,
 					-color
-			).negate();
+			);
 			if (currentEvaluation.getValue() > bestEvaluation.getValue()) {
 				bestEvaluation = currentEvaluation;
 			}

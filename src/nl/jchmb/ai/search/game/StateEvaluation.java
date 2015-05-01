@@ -4,20 +4,24 @@ import java.util.List;
 
 import nl.jchmb.generic.tuple.Pair;
 
-public class StateEvaluation<T> extends Pair<List<T>, Double> {
-	public StateEvaluation(List<T> o1, Double o2) {
-		super(o1, o2);
+public class StateEvaluation<T> {
+	private List<T> o1;
+	private double o2;
+	
+	public StateEvaluation(List<T> o1, double o2) {
+		this.o1 = o1;
+		this.o2 = o2;
 	}
 
 	public List<T> getStates() {
-		return getLeft();
+		return o1;
 	}
 	
 	public double getValue() {
-		return getRight();
+		return o2;
 	}
 	
 	public StateEvaluation<T> negate() {
-		return new StateEvaluation<T>(getLeft(), getRight() * -1);
+		return new StateEvaluation<T>(o1, -getValue());
 	}
 }

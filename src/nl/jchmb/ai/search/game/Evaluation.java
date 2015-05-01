@@ -2,16 +2,20 @@ package nl.jchmb.ai.search.game;
 
 import nl.jchmb.generic.tuple.Pair;
 
-public class Evaluation extends Pair<Boolean, Double> {
-	public Evaluation(Boolean o1, Double o2) {
-		super(o1, o2);
+public class Evaluation {
+	private boolean terminates;
+	private double value;
+	
+	public Evaluation(boolean terminates, double value) {
+		this.terminates = terminates;
+		this.value = value;
 	}
 	
 	public boolean terminates() {
-		return getLeft().booleanValue();
+		return terminates;
 	}
 	
 	public double getValue() {
-		return getRight().doubleValue();
+		return value;
 	}
 }
