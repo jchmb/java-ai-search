@@ -3,6 +3,7 @@ package nl.jchmb.ai.search.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.jchmb.ai.search.evaluator.Evaluator;
 import nl.jchmb.ai.search.expander.Expander;
 
 public class Minimax<T> implements Chooser<T> {
@@ -13,20 +14,18 @@ public class Minimax<T> implements Chooser<T> {
 	}
 	
 	@Override
-	public T choose(GameEvaluator<T> evaluator, Expander<T> expander, T state, int color) {
-		StateEvaluation<T> bestEvaluation = calculate(evaluator, expander, state, new ArrayList<T>(), depthLimit, color);
+	public T choose(Evaluator<T> evaluator, Expander<T> expander, T state, int color) {
+		StateEvaluation<T> bestEvaluation = calculate(evaluator, expander, state, new ArrayList<T>(), depthLimit, -99999.0d, 99999.0d, color);
 		return bestEvaluation.getStates().get(1);
 	}
 	
-	private StateEvaluation<T> calculate(GameEvaluator<T> evaluator, Expander<T> expander, T state, List<T> states, int depth, int color) {
-		Evaluation evaluation;
+	private StateEvaluation<T> calculate(Evaluator<T> evaluator, Expander<T> expander, T state, List<T> states, int depth, double alpha, double beta, int color) {
 		states.add(state);
 		StateEvaluation<T> bestEvaluation;
 		StateEvaluation<T> currentEvaluation;
 		
-		evaluation = evaluator.evaluate(state);
-		if (depth == 0 || evaluation.terminates()) {
-			return new StateEvaluation<T>(states, evaluation.getValue());
+		if (depth == 0 || evaluator.terminates(state)) {
+			return new StateEvaluation<T>(states, evaluator.evaluate(state));
 		}
 		if (color > 0) {
 			bestEvaluation =  new StateEvaluation<T>(states, -99999.0d);
@@ -37,10 +36,18 @@ public class Minimax<T> implements Chooser<T> {
 						child,
 						new ArrayList<T>(states),
 						depth - 1,
+						alpha,
+						beta,
 						-1
 				);
 				if (currentEvaluation.getValue() > bestEvaluation.getValue()) {
 					bestEvaluation = currentEvaluation;
+				}
+				if (bestEvaluation.getValue() > alpha) {
+					alpha = bestEvaluation.getValue();
+				}
+				if (beta <= alpha) {
+					break;
 				}
 			}
 		} else {
@@ -52,16 +59,22 @@ public class Minimax<T> implements Chooser<T> {
 						child,
 						new ArrayList<T>(states),
 						depth - 1,
+						alpha,
+						beta,
 						1
 				);
 				if (currentEvaluation.getValue() < bestEvaluation.getValue()) {
 					bestEvaluation = currentEvaluation;
 				}
+				if (bestEvaluation.getValue() < beta) {
+					beta = bestEvaluation.getValue();
+				}
+				if (beta <= alpha) {
+					break;
+				}
 			}
 
 		}
-		
-		
 		
 		return bestEvaluation;
 	}

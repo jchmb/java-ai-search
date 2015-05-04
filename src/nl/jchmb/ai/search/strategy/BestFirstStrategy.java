@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-import nl.jchmb.ai.search.evaluator.Evaluator;
+import nl.jchmb.ai.search.evaluator.Terminator;
 import nl.jchmb.ai.search.expander.Expander;
 import nl.jchmb.ai.search.node.Node;
 
@@ -18,7 +18,7 @@ public class BestFirstStrategy<T> implements Strategy<T> {
 	
 	@Override
 	public List<T> search(Expander<T> expander,
-			Evaluator<T> evaluator, T startState) {
+			Terminator<T> evaluator, T startState) {
 		Node<T> currentNode;
 		T currentState;
 		PriorityQueue<Node<T>> queue = new PriorityQueue<Node<T>>(5000, comparator);
@@ -28,7 +28,7 @@ public class BestFirstStrategy<T> implements Strategy<T> {
 			currentNode = queue.poll();
 			currentState = currentNode.getState();
 			
-			if (evaluator.isGoalState(currentState)) {
+			if (evaluator.terminates(currentState)) {
 				return currentNode.getPath();
 			}
 			

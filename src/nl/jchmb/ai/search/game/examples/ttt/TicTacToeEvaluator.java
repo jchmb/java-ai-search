@@ -1,26 +1,15 @@
 package nl.jchmb.ai.search.game.examples.ttt;
 
-import nl.jchmb.ai.search.game.Evaluation;
-import nl.jchmb.ai.search.game.GameEvaluator;
+import nl.jchmb.ai.search.evaluator.Evaluator;
 
-public class TicTacToeEvaluator implements GameEvaluator<TicTacToe> {
+public class TicTacToeEvaluator implements Evaluator<TicTacToe> {
 
 	@Override
-	public Evaluation evaluate(TicTacToe state) {
-		int victor;
-		boolean terminates;
-		
-		victor = getVictor(state);
-		if (victor != 0 || state.countPlies() == 9) {
-			terminates = true;
-		} else {
-			terminates = false;
-		}
-		
-		return new Evaluation(terminates, (double) victor);
+	public double evaluate(TicTacToe state) {
+		return terminates(state) ? ((double) state.getVictor()) : 0.0d;
 	}
-
-	public int getVictor(TicTacToe state) {
-		return state.getVictor();
+	
+	public boolean terminates(TicTacToe state) {
+		return state.getVictor() != 0 || state.countPlies() == 9;
 	}
 }

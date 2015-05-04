@@ -3,6 +3,7 @@ package nl.jchmb.ai.search.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.jchmb.ai.search.evaluator.Evaluator;
 import nl.jchmb.ai.search.expander.Expander;
 
 public class Negamax<T> implements Chooser<T> {
@@ -13,19 +14,17 @@ public class Negamax<T> implements Chooser<T> {
 	}
 	
 	@Override
-	public T choose(GameEvaluator<T> evaluator, Expander<T> expander, T state, int color) {
+	public T choose(Evaluator<T> evaluator, Expander<T> expander, T state, int color) {
 		return calculate(evaluator, expander, state, new ArrayList<T>(), depthLimit, color).getStates().get(1);
 	}
 	
-	private StateEvaluation<T> calculate(GameEvaluator<T> evaluator, Expander<T> expander, T state, List<T> states, int depth, int color) {
-		Evaluation evaluation;
+	private StateEvaluation<T> calculate(Evaluator<T> evaluator, Expander<T> expander, T state, List<T> states, int depth, int color) {
 		states.add(state);
 		StateEvaluation<T> bestEvaluation = new StateEvaluation<T>(states, -99999.0d);
 		StateEvaluation<T> currentEvaluation;
 		
-		evaluation = evaluator.evaluate(state);
-		if (depth == 0 || evaluation.terminates()) {
-			return new StateEvaluation<T>(states, ((double) color) * evaluation.getValue());
+		if (depth == 0 || evaluator.terminates(state)) {
+			return new StateEvaluation<T>(states, ((double) color) * evaluator.evaluate(state));
 		}
 		for (T child : expander.expand(state)) {
 			currentEvaluation = calculate(

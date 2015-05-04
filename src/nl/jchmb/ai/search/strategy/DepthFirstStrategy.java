@@ -3,7 +3,7 @@ package nl.jchmb.ai.search.strategy;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.jchmb.ai.search.evaluator.Evaluator;
+import nl.jchmb.ai.search.evaluator.Terminator;
 import nl.jchmb.ai.search.expander.Expander;
 
 public class DepthFirstStrategy<T> implements Strategy<T> {
@@ -19,16 +19,16 @@ public class DepthFirstStrategy<T> implements Strategy<T> {
 	
 	@Override
 	public List<T> search(Expander<T> expander,
-			Evaluator<T> evaluator, T startState) {
+			Terminator<T> evaluator, T startState) {
 		return search(expander, evaluator, startState, new ArrayList<T>());
 	}
 	
 	private List<T> search(Expander<T> expander,
-			Evaluator<T> evaluator, T state, List<T> currentPath) {
+			Terminator<T> evaluator, T state, List<T> currentPath) {
 		List<T> path;
 		
 		currentPath.add(state);
-		if (evaluator.isGoalState(state)) {
+		if (evaluator.terminates(state)) {
 			return currentPath;
 		}
 		

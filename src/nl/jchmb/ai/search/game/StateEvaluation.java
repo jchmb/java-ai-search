@@ -2,8 +2,6 @@ package nl.jchmb.ai.search.game;
 
 import java.util.List;
 
-import nl.jchmb.generic.tuple.Pair;
-
 public class StateEvaluation<T> {
 	private List<T> o1;
 	private double o2;
